@@ -1,3 +1,6 @@
+
+@import "../../assets/scss/global";
+
 @font-face{
     font-family: 'dengXian';
     src: url(../../assets/fonts/deng.ttf) format('ttf');
@@ -5,11 +8,6 @@
     font-style: normal;
 }
 
-body,html{
-    font: bold 24px/1.5 "dengXian";
-    color: darkred;
-    background: #ffaaaa;
-}
 body{
     background: url(../../assets/img/baozou1.jpg) no-repeat center center;
 }
