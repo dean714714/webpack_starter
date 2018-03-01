@@ -1,14 +1,20 @@
 
 import css from './index.scss';
 //var ajax = require('ajax');
-//import $ from 'jquery'
+//var $ = require('jquery');
 //require("expose-loader?getData!../../assets/lib/ajax.js");
 import {getData} from '../../assets/lib/ajax.js';
 //import helloJs from './hello.js';
 
+//require("../../assets/lib/jquery-1.8.3.js");//webpack的引入方式，不需要支持模块话规则，都可以，下诉方式需要模块支持原生模块规则
+//import $ from "../../assets/lib/jquery-1.8.3.js"
+
 const hello = "hello world!";
 
 console.log("this is a page named index");
+//window.onload = function(){
+	console.log($('body'))
+//}
 
 //可以在webpack.dev.js和webpack.prod.js中设定全局环境变量，在pages下的任何文件中都能获取到process.env.NODE_ENV
 //以此进行相关操作

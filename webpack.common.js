@@ -35,7 +35,7 @@ const options = {
 		filename: /*'assets/js/'+*/'[name].bundle.js',//多个入口就多个出口文件，文件名是入口属性名（而不是入口文件名）。[name]表示占位符，还有[id],[hash]之类的
 		path: path.resolve(__dirname,'dist'),
 		publicPath: '',
-		//libraryTarget: "umd"
+		libraryTarget: "umd"
 	},
 	module: {//loader（对文件内容的解析）
 		rules: [
@@ -128,7 +128,7 @@ const options = {
 	],
 	externals: {
 		//ajax: "getData",
-		//jquery: "jQuery"
+		jquery: "window.$"
 	},
 	//devtool: 'inline-source-map',
 //	devServer: {//我们在这里对webpack-dev-server进行配置
@@ -150,7 +150,7 @@ const options = {
 			filename:  __dirname+'/dist/'+key + '.html',//文件名称
 			template: htmls[key],//创建使用的模板（原html文件）
 			inject: true,
-			chunks: [key]
+			chunks: [key,'common']//不加common就不会在html中插入commonChunkPlugin分离的公用模块
 		}));
 	};
 	options.plugins = HtmlPlugin;
