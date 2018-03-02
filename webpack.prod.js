@@ -23,10 +23,5 @@ module.exports = merge(common,{
 	    	name: 'ventor', 
 	    	minChunks:Infinity,
 	    }),*/
-		new webpack.DefinePlugin({//定义全局变量
-		    'process.env': {
-		        NODE_ENV: '"production"',//或写成JSON.stringify('production')
-		    }
-		})
 	],
 });

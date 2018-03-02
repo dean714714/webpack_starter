@@ -4,7 +4,10 @@ const glob = require('glob');//获取匹配文件路径
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');//提取dundle中的内容单独生成一个文件
 const HtmlWebpackPlugin = require('html-webpack-plugin');//用于创建html文件
+const CopyWebpackPlugin = require('copy-webpack-plugin');//拷贝文件
 //const UglifyJSPlugin  = require('uglifyjs-webpack-plugin');//用于tree shaking清理未使用的模块
+
+//webpack(require('./webpack.config.dll.js'));
 
 function getEntry(globPath, pathDir) {//获取入口文件
     var files = glob.sync(globPath);
@@ -123,12 +126,24 @@ const options = {
 //		    }
 //		}),
 		extractSass,
+		new CopyWebpackPlugin([{//拷贝文件
+			from: __dirname + '/src/assets/lib',
+			to: __dirname + '/dist/assets/lib'
+		}]),
+		new webpack.DllReferencePlugin({
+	    	manifest: require('./manifest.json'), //指定manifest.json
+	    	name: 'vendor',  // 当前Dll的所有内容都会存放在这个参数指定变量名的一个全局变量下，注意与DllPlugin的name参数保持一致
+	    	context: __dirname
+	    }),
 		//new webpack.NamedModulesPlugin(),//模块热替换中使用，以便更容易查看要修补(patch)的依赖
 		//new webpack.HotModuleReplacementPlugin()//模块热替换
 	],
 	externals: {
+		//既然使用externals的方式依旧需要script标签引入脚本，那为何需要externals的配置呢，不是引入就可以使用了吗
+		//因为配置了externals才能require('jquery')的方式引入模块，而不是const $ = window.jQuery,这才是模块化的
+		//的该有姿态，统一了模块引入的而方式。且这种方式既能用模块方式引入且不会被打包到一个bundle中避免库文件也被一起打包造成文件很大的尴尬
 		//ajax: "getData",
-		jquery: "window.$"
+		jquery: "jQuery"//window.$
 	},
 	//devtool: 'inline-source-map',
 //	devServer: {//我们在这里对webpack-dev-server进行配置

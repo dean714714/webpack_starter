@@ -1,10 +1,13 @@
 
 import css from './index.scss';
 //var ajax = require('ajax');
-//var $ = require('jquery');
-//require("expose-loader?getData!../../assets/lib/ajax.js");
-import {getData} from '../../assets/lib/ajax.js';
+var $ = require('jquery');
+//require("expose-loader?getData!../../assets/js/ajax.js");
+import {getData} from '../../assets/js/ajax.js';
+//var getData = require('../../assets/js/ajax.js');
 //import helloJs from './hello.js';
+
+var _ = require('lodash');//lodash是通过npm安装的
 
 //require("../../assets/lib/jquery-1.8.3.js");//webpack的引入方式，不需要支持模块话规则，都可以，下诉方式需要模块支持原生模块规则
 //import $ from "../../assets/lib/jquery-1.8.3.js"
