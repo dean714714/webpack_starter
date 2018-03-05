@@ -6,7 +6,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');//提取dundle�
 const HtmlWebpackPlugin = require('html-webpack-plugin');//用于创建html文件
 const CopyWebpackPlugin = require('copy-webpack-plugin');//拷贝文件
 //const UglifyJSPlugin  = require('uglifyjs-webpack-plugin');//用于tree shaking清理未使用的模块
-
 //webpack(require('./webpack.config.dll.js'));
 
 function getEntry(globPath, pathDir) {//获取入口文件
